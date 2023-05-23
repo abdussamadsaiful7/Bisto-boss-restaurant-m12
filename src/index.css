@@ -5,3 +5,23 @@
 .spaced-text {
     letter-spacing: 0.5em; /* Adjust the value as per your preference */
   }
+
+
+  .carousel .thumbs{
+    text-align: center;
+}
+
+.bg-image{
+    background: url('./assets/home/chef-service.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 160px 20px;
+    background-attachment: fixed;
+
+}
+
+.featured-item{
+  background-image: url('../src/assets/home/featured.jpg');
+  background-position: center;
+  background-size: cover;
+}
