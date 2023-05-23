@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.spaced-text {
+    letter-spacing: 0.5em; /* Adjust the value as per your preference */
+  }
