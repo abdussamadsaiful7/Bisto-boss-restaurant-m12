@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const navOptions = <>
         <div className='lg:flex items-end justify-end px-6 font-bold'>
-            <li><a>HOME</a></li>
+            <li><Link to='/'>HOME</Link></li>
             <li><a>CONTACT US</a></li>
             <li><a>DASHBOARD</a></li>
-            <li><a>OUR MENU</a></li>
+            <li><Link to='/menu'>OUR MENU</Link></li>
             <li><a>OUR SHOP</a></li>
             <li><a>SIGN OUT</a></li>
             {/* <li><a>SIGN IN</a></li> */}
