@@ -1,29 +1,38 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
 
-    useEffect(()=>{
-        loadCaptchaEnginge(6); 
-    },[])
+    const { signIn } = useContext(AuthContext)
 
-    const handleLogin = event =>{
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, [])
+
+    const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
     }
 
-    const handleValidateCaptcha = () =>{
+    const handleValidateCaptcha = () => {
         const user_captcha_value = captchaRef.current.value;
-       if (validateCaptcha(user_captcha_value)){
+        if (validateCaptcha(user_captcha_value)) {
             setDisabled(false);
-       }
-      
+        }
+
     }
 
 
@@ -53,7 +62,7 @@ const Login = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                            < LoadCanvasTemplate />
+                                < LoadCanvasTemplate />
                             </label>
                             <input type="text" ref={captchaRef} placeholder="Type the text above" name="captcha" className="input input-bordered" />
                             <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs btn-warning mt-2">Validate</button>
@@ -62,6 +71,8 @@ const Login = () => {
                             <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
                         </div>
                     </form>
+                    <p className='pl-4 pb-4'>New here? create an account 
+                    <Link className='text-red-500' to='/signUp'> SignUp</Link></p>
                 </div>
             </div>
         </div>
