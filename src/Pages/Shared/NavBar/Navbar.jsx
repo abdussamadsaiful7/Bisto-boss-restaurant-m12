@@ -5,18 +5,17 @@ const Navbar = () => {
     const navOptions = <>
         <div className='lg:flex items-end justify-end px-6 font-bold'>
             <li><Link to='/'>HOME</Link></li>
-            <li><a>CONTACT US</a></li>
             <li><a>DASHBOARD</a></li>
             <li><Link to='/menu'>OUR MENU</Link></li>
-            <li><a>OUR SHOP</a></li>
-            <li><a>SIGN OUT</a></li>
+            <li><Link to='/order/salad'>ORDER</Link></li>
+            <li><Link to='/login'>LOGIN</Link></li>
             {/* <li><a>SIGN IN</a></li> */}
         </div>
 
     </>
     return (
 
-        <div className="navbar fixed z-10 bg-opacity-50  bg-black lg:px-14 py-4">
+        <div className="navbar fixed z-10 bg-opacity-40  bg-black lg:px-14 py-2">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">

@@ -14,8 +14,8 @@ const Menu = () => {
     const [menu] = useMenu();
     const desserts = menu.filter(item => item.category === 'dessert')
     const pizza = menu.filter(item => item.category === 'pizza')
-    const salads = menu.filter(item => item.category === 'salad')
-    const soups = menu.filter(item => item.category === 'soup')
+    const salad = menu.filter(item => item.category === 'salad')
+    const soup = menu.filter(item => item.category === 'soup')
     const offered = menu.filter(item => item.category === 'offered')
 
     return (
@@ -38,17 +38,6 @@ const Menu = () => {
                 <div className='md:mx-24'>
                     {/* offered menu items */}
                     <MenuCategory items={offered}></MenuCategory>
-                    <div className='text-center mb-10'>
-                        <button className="btn btn-outline uppercase btn-sm 
-                border-b-4 
-                border-l-0
-                border-r-0
-                border-t-0
-                my-4
-                 ">ORDER YOUR FAVORITE FOOD
-                        </button>
-
-                    </div>
                 </div>
             </div>
 
@@ -61,17 +50,6 @@ const Menu = () => {
                         img={dessertImg}
                     ></MenuCategory>
                 </div>
-                <div className='text-center mb-10'>
-                    <button className="btn btn-outline uppercase btn-sm 
-                border-b-4 
-                border-l-0
-                border-r-0
-                border-t-0
-                my-4
-                 ">ORDER YOUR FAVORITE FOOD
-                    </button>
-
-                </div>
             </div>
 
             <div className='md:mx-24'>
@@ -83,17 +61,6 @@ const Menu = () => {
                         img={pizzaImg}
                     ></MenuCategory>
                 </div>
-                <div className='text-center mb-10'>
-                    <button className="btn btn-outline uppercase btn-sm 
-                border-b-4 
-                border-l-0
-                border-r-0
-                border-t-0
-                my-4
-                 ">ORDER YOUR FAVORITE FOOD
-                    </button>
-
-                </div>
             </div>
 
 
@@ -101,21 +68,10 @@ const Menu = () => {
                 {/* salads menu items */}
                 <div>
                     <MenuCategory
-                        items={salads}
+                        items={salad}
                         title="salad"
                         img={saladImg}
                     ></MenuCategory>
-                </div>
-                <div className='text-center mb-10'>
-                    <button className="btn btn-outline uppercase btn-sm 
-                border-b-4 
-                border-l-0
-                border-r-0
-                border-t-0
-                my-4
-                 ">ORDER YOUR FAVORITE FOOD
-                    </button>
-
                 </div>
             </div>
 
@@ -124,21 +80,10 @@ const Menu = () => {
                 {/* soups menu items */}
                 <div>
                     <MenuCategory
-                        items={soups}
+                        items={soup}
                         title="soups"
                         img={soupImg}
                     ></MenuCategory>
-                </div>
-                <div className='text-center mb-10'>
-                    <button className="btn btn-outline uppercase btn-sm 
-                border-b-4 
-                border-l-0
-                border-r-0
-                border-t-0
-                my-4
-                 ">ORDER YOUR FAVORITE FOOD
-                    </button>
-
                 </div>
             </div>
         </div>
