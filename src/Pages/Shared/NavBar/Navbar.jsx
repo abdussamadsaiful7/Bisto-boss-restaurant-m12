@@ -28,14 +28,17 @@ const Navbar = () => {
                 user ? <>
                     <li><Link className='btn btn-outline btn-error'
                         onClick={handleLogout}>LOGOUT</Link></li>
-                        <li data-tip={user?.displayName} className='tooltip tooltip-bottom'> 
-                        <img className='w-full h-14 rounded-[50%]' 
-                        src={user?.photoURL} alt="" /> </li>
-                </>
-                 : 
-                <>
-                    <li><Link to='/login'>LOGIN</Link></li>
-                </>
+                    <div className="avatar tooltip tooltip-bottom" data-tip={user?.displayName}>
+                        <div className="w-10 ml-4 rounded-full 
+                         ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img src={user?.photoURL} />
+                        </div>
+                    </div>
+                    </>
+                    :
+                    <>
+                        <li><Link to='/login'>LOGIN</Link></li>
+                    </>
             }
 
         </div>
