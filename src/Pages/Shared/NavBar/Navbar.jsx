@@ -6,12 +6,12 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         logOut()
-        .then(()=>{})
-        .catch((error)=>{
-            console.log(error);
-        })
+            .then(() => { })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     const navOptions = <>
@@ -20,9 +20,23 @@ const Navbar = () => {
             <li><a>DASHBOARD</a></li>
             <li><Link to='/menu'>OUR MENU</Link></li>
             <li><Link to='/order/salad'>ORDER</Link></li>
-            {user?.email && <li><Link className='btn btn-outline btn-error' 
+            {/* {user?.email && <li><Link className='btn btn-outline btn-error' 
             onClick={handleLogout}>LOGOUT</Link></li>}
-            {!user?.email && <li><Link to='/login'>LOGIN</Link></li>}
+            {!user?.email && <li><Link to='/login'>LOGIN</Link></li>} */}
+
+            {
+                user ? <>
+                    <li><Link className='btn btn-outline btn-error'
+                        onClick={handleLogout}>LOGOUT</Link></li>
+                        <li data-tip={user?.displayName} className='tooltip tooltip-bottom'> 
+                        <img className='w-full h-14 rounded-[50%]' 
+                        src={user?.photoURL} alt="" /> </li>
+                </>
+                 : 
+                <>
+                    <li><Link to='/login'>LOGIN</Link></li>
+                </>
+            }
 
         </div>
 

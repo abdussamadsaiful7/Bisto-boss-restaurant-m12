@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
-import AuthProvider, { AuthContext } from '../../Providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const SignUp = () => {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const {createUser} = useContext(AuthContext);
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
+    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = data => {
         console.log(data)
@@ -16,6 +18,16 @@ const SignUp = () => {
        .then(result=>{
         const loggedUser = result.user;
         console.log(loggedUser);
+        updateUserProfile(data.name, data.photoURL)
+        .then(()=>{
+            console.log('User Profile updated')
+            reset();
+            toast.success('User created successfully!');
+            navigate('/')
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
        })
        
     };
@@ -45,6 +57,14 @@ const SignUp = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
+                                    <span className="label-text">Photo URL</span>
+                                </label>
+                                <input type="text" placeholder="photoURL" {...register("photoURL", { required: true })}
+                                    className="input input-bordered" />
+                                {errors.photoURL && <span className='text-red-500'>Photo URL is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" placeholder="email" {...register("email", { required: true } )} className="input input-bordered" />
@@ -64,9 +84,6 @@ const SignUp = () => {
                                 {errors.password?.type === 'minLength' && <p className='text-red-500'>password must be 6 character </p>}
                                 {errors.password?.type === 'maxLength' && <p className='text-red-500'>password must be less then 20 character </p>}
                                 {errors.password?.type === 'required' && <p className='text-red-500'>password must be one uppercase, lowercase character and one digit</p>}
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
                             </div>
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Sign Up"/>
