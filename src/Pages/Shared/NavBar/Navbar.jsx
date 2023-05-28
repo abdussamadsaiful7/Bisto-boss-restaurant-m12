@@ -26,10 +26,10 @@ const Navbar = () => {
             <li><Link to='/menu'>OUR MENU</Link></li>
             <li><Link to='/order/salad'>ORDER</Link></li>
             <li>
-                <Link className='relative mr-4' to='/'>
+                <Link className='relative mr-4' to='/dashboard/myCart'>
                       <span className='text-3xl'><FaShoppingCart/></span>
                         <span className="badge  badge-sm bg-blue-500 absolute 
-                        right-0 left-10 top-0 rounded-[60%]">{cart?.length || 0}</span>
+                        right-0 left-10 top-0 rounded-[60%]">+{cart?.length || 0}</span>
                 </Link>
             </li>
 
