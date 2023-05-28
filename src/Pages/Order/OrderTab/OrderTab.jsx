@@ -1,5 +1,5 @@
 import React from 'react';
-import FoodCard from '../../../Components/FoodCard/FoodCard';
+import FoodCard from '../FoodCard/FoodCard';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";

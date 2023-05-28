@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { FaShoppingCart } from 'react-icons/fa';
+import { useEffect } from 'react';
+import useCart from '../../../Hooks/UseCart';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
+    const [cart]= useCart();
 
     const handleLogout = () => {
         logOut()
@@ -14,15 +18,20 @@ const Navbar = () => {
             })
     }
 
+
     const navOptions = <>
         <div className='lg:flex items-end justify-end px-6 font-bold'>
             <li><Link to='/'>HOME</Link></li>
             <li><a>DASHBOARD</a></li>
             <li><Link to='/menu'>OUR MENU</Link></li>
             <li><Link to='/order/salad'>ORDER</Link></li>
-            {/* {user?.email && <li><Link className='btn btn-outline btn-error' 
-            onClick={handleLogout}>LOGOUT</Link></li>}
-            {!user?.email && <li><Link to='/login'>LOGIN</Link></li>} */}
+            <li>
+                <Link className='relative mr-4' to='/'>
+                      <span className='text-3xl'><FaShoppingCart/></span>
+                        <span className="badge  badge-sm bg-blue-500 absolute 
+                        right-0 left-10 top-0 rounded-[60%]">{cart?.length || 0}</span>
+                </Link>
+            </li>
 
             {
                 user ? <>
@@ -34,7 +43,7 @@ const Navbar = () => {
                             <img src={user?.photoURL} />
                         </div>
                     </div>
-                    </>
+                </>
                     :
                     <>
                         <li><Link to='/login'>LOGIN</Link></li>
