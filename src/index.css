@@ -34,3 +34,8 @@
 .drawer-side a {
   background-color: transparent;
 }
+
+.login-img{
+  background: url('./assets/others/authentication.png');
+  background-position: center;
+}

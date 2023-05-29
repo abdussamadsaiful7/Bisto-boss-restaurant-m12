@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 const MyCart = () => {
     const [cart, refetch] = useCart();
     const total = cart.reduce((sum, item) => item.price + sum, 0)
+   
+
 
     const handleDelete = (item) => {
         Swal.fire({
@@ -85,7 +87,7 @@ const MyCart = () => {
                                         {item.name}
 
                                     </td>
-                                    <td className='text-end'>${item.price}</td>
+                                    <td className='text-start'>${item.price}</td>
                                     <td>
                                         <button onClick={() => handleDelete(item)} className="btn btn-ghost btn-xs bg-red-500 text-white hover:text-red-500"><span ><FaTrashAlt /></span></button>
                                     </td>
