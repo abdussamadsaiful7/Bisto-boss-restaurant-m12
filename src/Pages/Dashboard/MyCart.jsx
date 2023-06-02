@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 const MyCart = () => {
     const [cart, refetch] = useCart();
     const total = cart.reduce((sum, item) => item.price + sum, 0)
-   
+
 
 
     const handleDelete = (item) => {
@@ -52,7 +52,9 @@ const MyCart = () => {
             <div className='uppercase font-extrabold flex justify-evenly items-center mb-2'>
                 <h2>Total orders: {cart.length}</h2>
                 <h2>Total price: ${total}</h2>
-                <button className="btn btn-sm btn-warning">pay</button>
+                <Link to='/dashboard/payment'>
+                    <button className="btn btn-sm btn-warning">pay</button>
+                </Link>
             </div>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
