@@ -7,11 +7,12 @@ import CheckoutFrom from './CheckoutFrom';
 import useCart from '../../../Hooks/UseCart';
 
 //TODO: provide publishable key,
-const stripePromise = loadStripe(import.meta.env.VITE_payment_Gateway)
+const stripePromise = loadStripe(import.meta.env.VITE_payment_Gateway_pk);
 const Payment = () => {
-    const [cart]=useCart();
-    const total = cart.reduce((sum, item => sum + item.price), 0);
+    const [cart]= useCart();
+    const total = cart.reduce((sum,item) => sum + item.price,0);
     const price = parseFloat(total.toFixed(2))
+    //console.log(price)
     return (
         <div className='w-[84%]'>
             <Helmet>
@@ -22,7 +23,7 @@ const Payment = () => {
                 heading={"Payment"} >
             </SectionTitle>
             <Elements stripe={stripePromise}>
-                <CheckoutFrom price={price}></CheckoutFrom>
+                <CheckoutFrom cart={cart} price={price} ></CheckoutFrom>
             </Elements>
         </div>
     );

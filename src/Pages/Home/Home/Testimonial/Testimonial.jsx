@@ -15,7 +15,10 @@ const Testimonial = () => {
     useEffect(() => {
         fetch('http://localhost:5000/reviews')
             .then(res => res.json())
-            .then(data => setReviews(data))
+            .then(data =>{
+                setReviews(data)
+                //console.log(data)
+            })
     }, [])
     return (
         <section className='md:mx-20 my-20'>
