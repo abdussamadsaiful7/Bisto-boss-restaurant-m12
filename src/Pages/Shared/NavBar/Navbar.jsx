@@ -4,11 +4,13 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useEffect } from 'react';
 import useCart from '../../../Hooks/UseCart';
+import useAdmin from '../../../Hooks/useAdmin';
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
-    const [cart]= useCart();
+    const [isAdmin] = useAdmin();
+    const [cart] = useCart();
 
     const handleLogout = () => {
         logOut()
@@ -22,13 +24,17 @@ const Navbar = () => {
     const navOptions = <>
         <div className='lg:flex items-end justify-end px-6 font-bold'>
             <li><Link to='/'>HOME</Link></li>
-            <li><a>DASHBOARD</a></li>
+            { isAdmin ?
+                <li><Link to='/dashboard/adminHome'>DASHBOARD</Link></li>
+                :
+                <li><Link to='/dashboard/userHome'>DASHBOARD</Link></li>
+            }
             <li><Link to='/menu'>OUR MENU</Link></li>
             <li><Link to='/order/salad'>ORDER</Link></li>
             <li>
                 <Link className='relative mr-4' to='/dashboard/myCart'>
-                      <span className='text-3xl'><FaShoppingCart/></span>
-                        <span className="badge  badge-sm bg-blue-500 absolute 
+                    <span className='text-3xl'><FaShoppingCart /></span>
+                    <span className="badge  badge-sm bg-blue-500 absolute 
                         right-0 left-10 top-0 rounded-[60%]">+{cart?.length || 0}</span>
                 </Link>
             </li>

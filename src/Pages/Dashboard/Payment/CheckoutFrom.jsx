@@ -86,7 +86,7 @@ const CheckoutFrom = ({ price, cart }) => {
                 date: new Date(),
                 quantity: cart.length,
                 cartItems: cart.map(item => item._id),
-                menuItems: cart.map(item => item.menuItemId),
+                menuItems: cart.map(item => item.itemId),
                 status: 'Service pending',
                 itemsName: cart.map(item => item.name)
             }

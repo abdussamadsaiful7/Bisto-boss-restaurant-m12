@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 const MyCart = () => {
     const [cart, refetch] = useCart();
     const total = cart.reduce((sum, item) => item.price + sum, 0)
+    const prices = parseFloat(total.toFixed(2))
 
 
 
@@ -51,7 +52,7 @@ const MyCart = () => {
             </Helmet>
             <div className='uppercase font-extrabold flex justify-evenly items-center mb-2'>
                 <h2>Total orders: {cart.length}</h2>
-                <h2>Total price: ${total}</h2>
+                <h2>Total price: ${prices}</h2>
                 <Link to='/dashboard/payment'>
                     <button className="btn btn-sm btn-warning">pay</button>
                 </Link>
